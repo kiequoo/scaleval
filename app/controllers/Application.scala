@@ -12,6 +12,7 @@ object Application extends Controller {
   }
 
   def eval = Action { request =>
+    println(request)
     val text = request.body.asText
     val res: String = new Eval()(text.getOrElse("")).toString
     Ok(res)
