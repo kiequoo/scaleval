@@ -13,9 +13,9 @@ object Application extends Controller {
 
   def eval = Action { request =>
 println(s"    content-type: ${request.contentType}")
-    println(s"    headers: ${request.headers}")
-    println(s"    body: ${request.body}")
-    println(s"    query string: ${request.rawQueryString}")
+println(s"    headers: ${request.headers}")
+println(s"    body: ${request.body}")
+println(s"    query string: ${request.rawQueryString}")
     val text = request.body.asText
     val res: String = new Eval()(text.getOrElse("")).toString
     Ok(res)
