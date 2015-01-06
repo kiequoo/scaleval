@@ -2,7 +2,6 @@ package controllers
 
 import play.api._
 import play.api.mvc._
-
 import com.twitter.util.Eval
 
 object Application extends Controller {
@@ -13,7 +12,12 @@ object Application extends Controller {
 
   def eval = Action { request =>
     val text = request.body.asText
-    val res: String = new Eval()(text.getOrElse("")).toString
-    Ok(res)
+    try {
+	    val res: String = new Eval()(text.getOrElse("")).toString
+	    Ok(res)    	
+	    } catch {
+	    	case e: Exception => Ok(e.getMessage)
+	    }
+
   }
 }
