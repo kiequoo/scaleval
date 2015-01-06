@@ -13,6 +13,7 @@ object Application extends Controller {
   def eval = Action { request =>
     val text = request.body.asText
     try {
+      System.out.println(text)
 	    val res: String = new Eval()(text.getOrElse("")).toString
 	    Ok(res)    	
 	    } catch {
